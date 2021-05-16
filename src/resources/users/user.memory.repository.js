@@ -37,7 +37,6 @@ const deleteUser = async (userId) => {
   const index = USERS.findIndex(i => i.id===userId)
   const user = USERS[index]
   USERS.splice(index,1)
-  
   tasksRepo.userDelete(userId)
   return user
 };
