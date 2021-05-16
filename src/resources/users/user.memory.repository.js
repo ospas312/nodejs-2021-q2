@@ -1,4 +1,5 @@
 const User = require('./user.model');
+const tasksRepo = require('../tasks/task.memory.repository');
 
 const USERS = [{
   id: "4cff2d17-a18f-48f7-8975-b1a91db78879",
@@ -36,6 +37,8 @@ const deleteUser = async (userId) => {
   const index = USERS.findIndex(i => i.id===userId)
   const user = USERS[index]
   USERS.splice(index,1)
+  
+  tasksRepo.userDelete(userId)
   return user
 };
 

@@ -10,26 +10,34 @@ router.route('/').get(async (req, res) => {
 router.route('/:userId').get(async (req, res) => {
   const {userId} = req.params
   const user = await usersService.getUser(userId);
-  res.json(User.toResponse(user))
+  if (user){
+    res.status(200).json(User.toResponse(user))
+  }else {
+    res.sendStatus(404)
+  }
 });
 
 router.route('/').post(async (req, res) => {
   const data = req.body;
   const user = await usersService.createUser(data);
-  res.json(User.toResponse(user))
+  res.status(201).json(User.toResponse(user))
 });
 
 router.route('/:userId').put(async (req, res) => {
   const data = req.body;
   const {userId} = req.params
   const user = await usersService.setUser(userId, data);
-  res.json(User.toResponse(user))
+  if (user){
+    res.status(200).json(User.toResponse(user))
+  }else {
+    res.sendStatus(404)
+  }
 });
 
 router.route('/:userId').delete(async (req, res) => {
   const {userId} = req.params
   const user = await usersService.deleteUser(userId);
-  res.json(User.toResponse(user))
+  res.status(200).json(User.toResponse(user))
 });
 
 module.exports = router;
