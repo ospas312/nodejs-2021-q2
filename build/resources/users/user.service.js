@@ -1,16 +1,15 @@
-import * as usersRepo from './user.memory.repository';
+"use strict";
+const usersRepo = require('./user.memory.repository.ts');
 /**
  * User service module
  * @module User service
  */
-
 /**
  * Function that get all users
  * @function
  * @returns {Array<User>} - Returns all users
  */
 const getAll = () => usersRepo.getAll();
-
 /**
  * Create user
  * @function
@@ -18,7 +17,6 @@ const getAll = () => usersRepo.getAll();
  * @returns {User} - Returns user
  */
 const createUser = (data) => usersRepo.createUser(data);
-
 /**
  * Get user by id
  * @function
@@ -26,7 +24,6 @@ const createUser = (data) => usersRepo.createUser(data);
  * @returns {User} Returns user
  */
 const getUser = (data) => usersRepo.getUser(data);
-
 /**
  * Edit user data in base
  * @function
@@ -35,7 +32,6 @@ const getUser = (data) => usersRepo.getUser(data);
  * @returns {User} - Returns  edited user
  */
 const setUser = (userId, data) => usersRepo.setUser(userId, data);
-
 /**
  * Delete user
  * @function
@@ -43,5 +39,4 @@ const setUser = (userId, data) => usersRepo.setUser(userId, data);
  * @returns {User} Returns delete user
  */
 const deleteUser = (data) => usersRepo.deleteUser(data);
-
-export = { getAll, createUser, getUser, setUser, deleteUser };
+module.exports = { getAll, createUser, getUser, setUser, deleteUser };

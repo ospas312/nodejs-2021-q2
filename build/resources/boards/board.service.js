@@ -1,17 +1,15 @@
-import * as boardsRepo from './board.memory.repository';
-
+"use strict";
+const boardsRepo = require('./board.memory.repository.ts');
 /**
  * Board service module
  * @module Board service
  */
-
 /**
  * Function that get all board
  * @function
  * @returns {Array<Board>} - Returns all boards
  */
 const getAll = () => boardsRepo.getAll();
-
 /**
  * Function create board
  * @function
@@ -19,7 +17,6 @@ const getAll = () => boardsRepo.getAll();
  * @returns {Board} - Returns create board
  */
 const createBoard = (body) => boardsRepo.createBoard(body);
-
 /**
  * Function get board by id
  * @function
@@ -27,7 +24,6 @@ const createBoard = (body) => boardsRepo.createBoard(body);
  * @returns {Board} Returns the searched board
  */
 const getBoard = (id) => boardsRepo.getBoard(id);
-
 /**
  * Function edit board by id
  * @function
@@ -35,8 +31,7 @@ const getBoard = (id) => boardsRepo.getBoard(id);
  * @param {Board} data - data board
  * @returns {Board} Returns the edited board
  */
-const setBoard = (id, data) => boardsRepo.setBoard(id , data);
-
+const setBoard = (id, data) => boardsRepo.setBoard(id, data);
 /**
  * Function delete board by id
  * @function
@@ -44,6 +39,4 @@ const setBoard = (id, data) => boardsRepo.setBoard(id , data);
  * @returns {Board} Returns the delete board
  */
 const deleteBoard = (id) => boardsRepo.deleteBoard(id);
-
-
-export = { getAll, createBoard, getBoard, setBoard, deleteBoard };
+module.exports = { getAll, createBoard, getBoard, setBoard, deleteBoard };

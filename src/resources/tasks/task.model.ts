@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 /**
 * Task model
@@ -12,7 +12,7 @@ const { v4: uuidv4 } = require('uuid');
 * @property {string|number} columnId - Column id
 */
 
-class Task {
+export class Task {
   constructor({
     id = uuidv4(),
     title = 'task',
@@ -31,5 +31,3 @@ class Task {
     this.columnId = columnId;
   }
 }
-
-module.exports = Task;

@@ -1,5 +1,5 @@
-const User = require('./user.model.ts');
-const tasksRepo = require('../tasks/task.memory.repository.ts');
+import { User } from "./user.model";
+import * as tasksRepo from '../tasks/task.memory.repository';
 
 /**
  * User repository 
@@ -84,4 +84,4 @@ const deleteUser = async (userId) => {
 };
 
 
-module.exports = { getAll, createUser, getUser, setUser, deleteUser };
+export = { getAll, createUser, getUser, setUser, deleteUser };

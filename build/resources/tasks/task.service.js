@@ -1,10 +1,9 @@
-import * as tasksRepo  from './task.memory.repository';
-
+"use strict";
+const tasksRepo = require('./task.memory.repository.ts');
 /**
  * Task service module
  * @module Task service
  */
-
 /**
  * Function that get all task
  * @function
@@ -12,7 +11,6 @@ import * as tasksRepo  from './task.memory.repository';
  * @returns {Array<Task>} - Returns all tasks
  */
 const getAll = (id) => tasksRepo.getAll(id);
-
 /**
  * Function create task
  * @function
@@ -21,7 +19,6 @@ const getAll = (id) => tasksRepo.getAll(id);
  * @returns {Task} - Returns create tasks
  */
 const createTask = (boardId, body) => tasksRepo.createTask(boardId, body);
-
 /**
  * Function get task by id
  * @function
@@ -30,7 +27,6 @@ const createTask = (boardId, body) => tasksRepo.createTask(boardId, body);
  * @returns {Task} Returns the searched task
  */
 const getTask = (boardId, taskId) => tasksRepo.getTask(boardId, taskId);
-
 /**
  * Function edit task by id
  * @function
@@ -40,7 +36,6 @@ const getTask = (boardId, taskId) => tasksRepo.getTask(boardId, taskId);
  * @returns {Task} Returns the edited task
  */
 const setTask = (boardId, taskId, body) => tasksRepo.setTask(boardId, taskId, body);
-
 /**
  * Function delete task by id
  * @function
@@ -49,5 +44,4 @@ const setTask = (boardId, taskId, body) => tasksRepo.setTask(boardId, taskId, bo
  * @returns {Task} Returns the delete task
  */
 const deleteTask = (boardId, taskId) => tasksRepo.deleteTask(boardId, taskId);
-
-export = { getAll, createTask, getTask, setTask, deleteTask };
+module.exports = { getAll, createTask, getTask, setTask, deleteTask };

@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
-
+"use strict";
+const { v4: uuidv4 } = require('uuid');
 /**
 * Board model
 * @typedef {Object} Board
@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from 'uuid';
 * @property {string} title - Board title
 * @property {Column[]} columns - Board columns
 */
-
 /**
 * Column model
 * @typedef {Object} Column
@@ -15,15 +14,11 @@ import { v4 as uuidv4 } from 'uuid';
 * @property {string} title - Column title
 * @property {number} order - Column order (optional)
 */
-
-export class Board {
-  constructor({
-    id = uuidv4(),
-    title = 'board',
-    columns = [],
-  } = {}) {
-    this.id = id;
-    this.title = title;
-    this.columns = columns;
-  }
+class Board {
+    constructor({ id = uuidv4(), title = 'board', columns = [], } = {}) {
+        this.id = id;
+        this.title = title;
+        this.columns = columns;
+    }
 }
+module.exports = Board;

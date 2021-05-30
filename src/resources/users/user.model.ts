@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 /**
 * User model
@@ -9,7 +9,7 @@ const { v4: uuidv4 } = require('uuid');
 * @property {string} password - User password
 */
 
-class User {
+export class User {
   constructor({
     id = uuidv4(),
     name = 'USER',
@@ -27,5 +27,3 @@ class User {
     return { id, name, login };
   }
 }
-
-module.exports = User;
