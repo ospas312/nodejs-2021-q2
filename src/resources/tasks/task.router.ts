@@ -1,5 +1,5 @@
 const router = require('express').Router({mergeParams: true})
-const tasksService = require('./task.service');
+const tasksService = require('./task.service.ts');
 
 router.route('/').get(async (req, res) => {
   const { boardId } = req.params;

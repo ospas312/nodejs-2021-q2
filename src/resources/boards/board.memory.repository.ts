@@ -1,5 +1,5 @@
-const { deleteBoardTask } = require('../tasks/task.memory.repository');
-const Board = require('./board.model');
+const { deleteBoardTask } = require('../tasks/task.memory.repository.ts');
+const Board = require('./board.model.ts');
 
 /**
  * Board repository module

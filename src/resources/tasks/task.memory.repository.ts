@@ -1,4 +1,4 @@
-const Task = require("./task.model");
+const Task = require("./task.model.ts");
 
 /**
  * Task repository module

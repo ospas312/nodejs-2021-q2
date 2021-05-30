@@ -1,4 +1,4 @@
-const boardsRepo = require('./board.memory.repository');
+const boardsRepo = require('./board.memory.repository.ts');
 
 /**
  * Board service module

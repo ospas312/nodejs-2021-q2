@@ -1,5 +1,5 @@
-const User = require('./user.model');
-const tasksRepo = require('../tasks/task.memory.repository');
+const User = require('./user.model.ts');
+const tasksRepo = require('../tasks/task.memory.repository.ts');
 
 /**
  * User repository 
