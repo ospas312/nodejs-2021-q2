@@ -1,4 +1,6 @@
 import * as usersRepo from './user.memory.repository';
+import { IUser } from '../../types/IUser';
+
 /**
  * User service module
  * @module User service
@@ -9,7 +11,7 @@ import * as usersRepo from './user.memory.repository';
  * @function
  * @returns {Array<User>} - Returns all users
  */
-const getAll = () => usersRepo.getAll();
+const getAll = ():Promise<IUser[]> => usersRepo.getAll();
 
 /**
  * Create user
@@ -17,7 +19,7 @@ const getAll = () => usersRepo.getAll();
  * @param {User} data - User data
  * @returns {User} - Returns user
  */
-const createUser = (data) => usersRepo.createUser(data);
+const createUser = (data:Request):Promise<IUser> => usersRepo.createUser(data);
 
 /**
  * Get user by id
@@ -25,7 +27,7 @@ const createUser = (data) => usersRepo.createUser(data);
  * @param {string} data - User id
  * @returns {User} Returns user
  */
-const getUser = (data) => usersRepo.getUser(data);
+const getUser = (data:string):Promise<IUser> => usersRepo.getUser(data);
 
 /**
  * Edit user data in base
@@ -34,7 +36,7 @@ const getUser = (data) => usersRepo.getUser(data);
  * @param {User} data - User data new
  * @returns {User} - Returns  edited user
  */
-const setUser = (userId, data) => usersRepo.setUser(userId, data);
+const setUser = (userId:string, data:Request):Promise<IUser> => usersRepo.setUser(userId, data);
 
 /**
  * Delete user
@@ -42,6 +44,6 @@ const setUser = (userId, data) => usersRepo.setUser(userId, data);
  * @param {string} data - User id
  * @returns {User} Returns delete user
  */
-const deleteUser = (data) => usersRepo.deleteUser(data);
+const deleteUser = (data:string):Promise<IUser> => usersRepo.deleteUser(data);
 
 export = { getAll, createUser, getUser, setUser, deleteUser };

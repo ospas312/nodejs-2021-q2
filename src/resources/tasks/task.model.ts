@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { ITask } from '../../types/ITask';
 
 /**
 * Task model
@@ -21,7 +22,7 @@ export class Task {
     userId = '',
     boardId = '',
     columnId = '',
-  } = {}) {
+  }: ITask ) {
     this.id = id;
     this.title = title;
     this.order = order;

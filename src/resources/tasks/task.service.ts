@@ -1,4 +1,5 @@
 import * as tasksRepo  from './task.memory.repository';
+import { ITask } from '../../types/ITask';
 
 /**
  * Task service module
@@ -11,7 +12,7 @@ import * as tasksRepo  from './task.memory.repository';
  * @param {string|number} id - Board id
  * @returns {Array<Task>} - Returns all tasks
  */
-const getAll = (id) => tasksRepo.getAll(id);
+const getAll = (id:string):Promise<ITask[]> => tasksRepo.getAll(id);
 
 /**
  * Function create task
@@ -20,7 +21,7 @@ const getAll = (id) => tasksRepo.getAll(id);
  * @param {Task} body - data task
  * @returns {Task} - Returns create tasks
  */
-const createTask = (boardId, body) => tasksRepo.createTask(boardId, body);
+const createTask = (boardId: string, body:Request):Promise<ITask> => tasksRepo.createTask(boardId, body);
 
 /**
  * Function get task by id
@@ -29,7 +30,7 @@ const createTask = (boardId, body) => tasksRepo.createTask(boardId, body);
  * @param {string|number} taskId - task id
  * @returns {Task} Returns the searched task
  */
-const getTask = (boardId, taskId) => tasksRepo.getTask(boardId, taskId);
+const getTask = (boardId: string, taskId:string):Promise<ITask[]> => tasksRepo.getTask(boardId, taskId);
 
 /**
  * Function edit task by id
@@ -39,7 +40,7 @@ const getTask = (boardId, taskId) => tasksRepo.getTask(boardId, taskId);
  * @param {Task} body - data task
  * @returns {Task} Returns the edited task
  */
-const setTask = (boardId, taskId, body) => tasksRepo.setTask(boardId, taskId, body);
+const setTask = (boardId:string, taskId:string, body:Request):Promise<ITask[]> => tasksRepo.setTask(boardId, taskId, body);
 
 /**
  * Function delete task by id
@@ -48,6 +49,6 @@ const setTask = (boardId, taskId, body) => tasksRepo.setTask(boardId, taskId, bo
  * @param {string|number} taskId - task id
  * @returns {Task} Returns the delete task
  */
-const deleteTask = (boardId, taskId) => tasksRepo.deleteTask(boardId, taskId);
+const deleteTask = (boardId:string, taskId:string):Promise<ITask> => tasksRepo.deleteTask(boardId, taskId);
 
 export = { getAll, createTask, getTask, setTask, deleteTask };

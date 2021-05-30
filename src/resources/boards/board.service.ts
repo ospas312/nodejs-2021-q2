@@ -18,7 +18,7 @@ const getAll = () => boardsRepo.getAll();
  * @param {Board} body - data board
  * @returns {Board} - Returns create board
  */
-const createBoard = (body) => boardsRepo.createBoard(body);
+const createBoard = (body:Request) => boardsRepo.createBoard(body);
 
 /**
  * Function get board by id
@@ -26,7 +26,7 @@ const createBoard = (body) => boardsRepo.createBoard(body);
  * @param {string|number} id - board id
  * @returns {Board} Returns the searched board
  */
-const getBoard = (id) => boardsRepo.getBoard(id);
+const getBoard = (id:string) => boardsRepo.getBoard(id);
 
 /**
  * Function edit board by id
@@ -35,7 +35,7 @@ const getBoard = (id) => boardsRepo.getBoard(id);
  * @param {Board} data - data board
  * @returns {Board} Returns the edited board
  */
-const setBoard = (id, data) => boardsRepo.setBoard(id , data);
+const setBoard = (id:string, data:Request) => boardsRepo.setBoard(id , data);
 
 /**
  * Function delete board by id
@@ -43,7 +43,7 @@ const setBoard = (id, data) => boardsRepo.setBoard(id , data);
  * @param {string|number} id - board id
  * @returns {Board} Returns the delete board
  */
-const deleteBoard = (id) => boardsRepo.deleteBoard(id);
+const deleteBoard = (id:string) => boardsRepo.deleteBoard(id);
 
 
 export = { getAll, createBoard, getBoard, setBoard, deleteBoard };

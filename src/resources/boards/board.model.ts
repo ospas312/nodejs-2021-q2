@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { IBoard } from '../../types/IBoard';
 
 /**
 * Board model
@@ -21,7 +22,7 @@ export class Board {
     id = uuidv4(),
     title = 'board',
     columns = [],
-  } = {}) {
+  }: IBoard) {
     this.id = id;
     this.title = title;
     this.columns = columns;

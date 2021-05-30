@@ -1,5 +1,6 @@
 import { User } from "./user.model";
 import * as tasksRepo from '../tasks/task.memory.repository';
+import { IUser } from "../../types/IUser";
 
 /**
  * User repository 
@@ -25,7 +26,7 @@ const USERS = [{
  * @function
  * @returns {Array<User>} - Returns all users
  */
-const getAll = async () => USERS;
+const getAll = async ():Promise<IUser[]> => USERS;
 
 /**
  * Function create user
@@ -34,11 +35,11 @@ const getAll = async () => USERS;
  * @param {User} data - User data
  * @returns {User} - Returns create user
  */
-const createUser = async (data) => {
+const createUser = async ({ login, name, password }: IUser):Promise<IUser[]> => {
   const user = new User({
-    name: data.name,
-    login: data.login,
-    password: data.password
+    name,
+    login,
+    password
   })
   USERS.push(user)
   return user;
@@ -50,7 +51,7 @@ const createUser = async (data) => {
  * @param {string} userId - User id
  * @returns {User} - Returns create user
  */
-const getUser = async (userId) => USERS.find(i => i.id === userId);
+const getUser = async (userId:string):Promise<IUser[]> => USERS.find(i => i.id === userId);
 
 /**
  * Function edit user by id
@@ -60,11 +61,11 @@ const getUser = async (userId) => USERS.find(i => i.id === userId);
  * @param {User} data - User data new
  * @returns {User} - Returns create user
  */
-const setUser = async (userId, data) => {
+const setUser = async (userId:string, { login, name, password }: IUser) => {
   const index = USERS.findIndex(i => i.id===userId)
-  USERS[index].name = data.name
-  USERS[index].login = data.login
-  USERS[index].password = data.password
+  USERS[index].name = name
+  USERS[index].login = login
+  USERS[index].password = password
   return  USERS[index]
 };
 
@@ -75,7 +76,7 @@ const setUser = async (userId, data) => {
  * @param {string} userId - User id
  * @returns {User} Returns delete user
  */
-const deleteUser = async (userId) => {
+const deleteUser = async (userId:string) => {
   const index = USERS.findIndex(i => i.id===userId)
   const user = USERS[index]
   USERS.splice(index,1)
