@@ -1,12 +1,13 @@
 import { Board } from "./board.model";
-import { deleteBoardTask } from '../tasks/task.memory.repository';
+import deleteBoardTask from '../tasks/task.memory.repository';
+import { IBoard } from "../../types/IBoard";
 
 /**
  * Board repository module
  * @module Board repository
  */
 
-const BOARDS = [];
+const BOARDS:Array<IBoard> = [];
 
 /**
  * Function that get all board
@@ -15,7 +16,7 @@ const BOARDS = [];
  * @param {string|number} id - Board id
  * @returns {Array<Board>} - Returns all boards
  */
-const getAll = async () => BOARDS;
+const getAll = async (): Promise<Array<IBoard>> => BOARDS;
 
 /**
  * Function create board
@@ -24,7 +25,7 @@ const getAll = async () => BOARDS;
  * @param {Board} body - data board
  * @returns {Board} - Returns create board
  */
-const createBoard = async (body) => {
+const createBoard = async (body:IBoard): Promise<IBoard> => {
     const board = new Board({
         title: body.title,
         columns: body.columns
@@ -40,7 +41,7 @@ const createBoard = async (body) => {
  * @param {string|number} id - board id
  * @returns {Board} Returns the searched board
  */
-const getBoard = async (id) => BOARDS.find(i => i.id === id);
+const getBoard = async (id:string): Promise<IBoard| undefined> => BOARDS.find(i => i.id === id);
 
 /**
  * Function edit board by id
@@ -50,10 +51,9 @@ const getBoard = async (id) => BOARDS.find(i => i.id === id);
  * @param {Board} body - data board
  * @returns {Board} Returns the edited board
  */
-const setBoard = async (id, body) => {
+const setBoard = async (id:string, body:IBoard): Promise<IBoard | undefined> => {
     const index = BOARDS.findIndex(i => i.id===id)
-    BOARDS[index].title = body.title
-    BOARDS[index].columns = body.columns
+    BOARDS[index] = body
     return  BOARDS[index]
 };
 
@@ -63,13 +63,13 @@ const setBoard = async (id, body) => {
  * @param {string|number} id - board id
  * @returns {Board} Returns the delete board
  */
-const deleteBoard = async (id) => {
+const deleteBoard = async (id:string): Promise<IBoard | undefined> => {
     const index = BOARDS.findIndex(i => i.id === id)
     const board = BOARDS[index]
-    deleteBoardTask(id)
+    await deleteBoardTask.deleteBoardTask(id)
     BOARDS.splice(index,1)
     return board
 };
 
 
-export = { getAll, createBoard, getBoard, setBoard, deleteBoard };
+export default { getAll, createBoard, getBoard, setBoard, deleteBoard };

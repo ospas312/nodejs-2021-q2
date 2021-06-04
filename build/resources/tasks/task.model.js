@@ -1,5 +1,7 @@
 "use strict";
-const { v4: uuidv4 } = require('uuid');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Task = void 0;
+const uuid_1 = require("uuid");
 /**
 * Task model
 * @typedef {Object} Task
@@ -12,7 +14,7 @@ const { v4: uuidv4 } = require('uuid');
 * @property {string|number} columnId - Column id
 */
 class Task {
-    constructor({ id = uuidv4(), title = 'task', order = 0, description = '', userId = '', boardId = '', columnId = '', } = {}) {
+    constructor({ id = uuid_1.v4(), title = 'task', order = 0, description = '', userId = '', boardId = '', columnId = '', }) {
         this.id = id;
         this.title = title;
         this.order = order;
@@ -22,4 +24,4 @@ class Task {
         this.columnId = columnId;
     }
 }
-module.exports = Task;
+exports.Task = Task;

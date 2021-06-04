@@ -1,10 +1,9 @@
 import { Router } from "express";
-import * as boardsService from './board.service';
+import boardsService from './board.service';
 
+const boardRouter = Router({ mergeParams: true });
 
-const boardRouter = Router();
-
-boardRouter.route('/').get(async (req, res) => {
+boardRouter.route('/').get(async (_req, res) => {
   const boards = await boardsService.getAll();
   res.json(boards);
 });

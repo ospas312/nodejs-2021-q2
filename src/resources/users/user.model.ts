@@ -11,6 +11,14 @@ import { IUser } from '../../types/IUser';
 */
 
 export class User {
+  id: string;
+
+  name: string;
+
+  login: string;
+
+  password: string;
+
   constructor({
     id = uuidv4(),
     name = 'USER',

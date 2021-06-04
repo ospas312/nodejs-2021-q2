@@ -1,4 +1,5 @@
-import * as boardsRepo from './board.memory.repository';
+import boardsRepo from './board.memory.repository';
+import { IBoard } from '../../types/IBoard';
 
 /**
  * Board service module
@@ -10,7 +11,7 @@ import * as boardsRepo from './board.memory.repository';
  * @function
  * @returns {Array<Board>} - Returns all boards
  */
-const getAll = () => boardsRepo.getAll();
+const getAll = async(): Promise<Array<IBoard>> => boardsRepo.getAll();
 
 /**
  * Function create board
@@ -18,7 +19,7 @@ const getAll = () => boardsRepo.getAll();
  * @param {Board} body - data board
  * @returns {Board} - Returns create board
  */
-const createBoard = (body:Request) => boardsRepo.createBoard(body);
+const createBoard = async(body:IBoard): Promise<IBoard> => boardsRepo.createBoard(body);
 
 /**
  * Function get board by id
@@ -26,7 +27,7 @@ const createBoard = (body:Request) => boardsRepo.createBoard(body);
  * @param {string|number} id - board id
  * @returns {Board} Returns the searched board
  */
-const getBoard = (id:string) => boardsRepo.getBoard(id);
+const getBoard = async(id:string): Promise<IBoard | undefined> => boardsRepo.getBoard(id);
 
 /**
  * Function edit board by id
@@ -35,7 +36,7 @@ const getBoard = (id:string) => boardsRepo.getBoard(id);
  * @param {Board} data - data board
  * @returns {Board} Returns the edited board
  */
-const setBoard = (id:string, data:Request) => boardsRepo.setBoard(id , data);
+const setBoard = async(id:string, data:IBoard): Promise<IBoard | undefined> => boardsRepo.setBoard(id , data);
 
 /**
  * Function delete board by id
@@ -43,7 +44,7 @@ const setBoard = (id:string, data:Request) => boardsRepo.setBoard(id , data);
  * @param {string|number} id - board id
  * @returns {Board} Returns the delete board
  */
-const deleteBoard = (id:string) => boardsRepo.deleteBoard(id);
+const deleteBoard = async(id:string): Promise<IBoard | undefined> => boardsRepo.deleteBoard(id);
 
 
-export = { getAll, createBoard, getBoard, setBoard, deleteBoard };
+export default { getAll, createBoard, getBoard, setBoard, deleteBoard };

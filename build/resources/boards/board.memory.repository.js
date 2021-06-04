@@ -1,6 +1,6 @@
 "use strict";
-const { deleteBoardTask } = require('../tasks/task.memory.repository.ts');
-const Board = require('./board.model.ts');
+const board_model_1 = require("./board.model");
+const task_memory_repository_1 = require("../tasks/task.memory.repository");
 /**
  * Board repository module
  * @module Board repository
@@ -22,7 +22,7 @@ const getAll = async () => BOARDS;
  * @returns {Board} - Returns create board
  */
 const createBoard = async (body) => {
-    const board = new Board({
+    const board = new board_model_1.Board({
         title: body.title,
         columns: body.columns
     });
@@ -60,7 +60,7 @@ const setBoard = async (id, body) => {
 const deleteBoard = async (id) => {
     const index = BOARDS.findIndex(i => i.id === id);
     const board = BOARDS[index];
-    deleteBoardTask(id);
+    task_memory_repository_1.deleteBoardTask(id);
     BOARDS.splice(index, 1);
     return board;
 };

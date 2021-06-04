@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 import { IBoard } from '../../types/IBoard';
+import { IColumn } from '../../types/IColumn';
 
 /**
 * Board model
 * @typedef {Object} Board
 * @property {string|number} id - Board id
 * @property {string} title - Board title
-* @property {Column[]} columns - Board columns
+* @property {Array<IColumn>} columns - Board columns
 */
 
 /**
@@ -18,6 +19,12 @@ import { IBoard } from '../../types/IBoard';
 */
 
 export class Board {
+  id:string;
+
+  title:string;
+
+  columns: Array<IColumn>;
+
   constructor({
     id = uuidv4(),
     title = 'board',

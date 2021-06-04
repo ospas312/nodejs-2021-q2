@@ -6,7 +6,7 @@ import { ITask } from "../../types/ITask";
  * @module Task repository
  */
 
-const TASKS = [];
+const TASKS: Array<ITask> = [];
 
 /**
  * Function that get all task
@@ -15,7 +15,7 @@ const TASKS = [];
  * @param {string|number} id - Board id
  * @returns {Array<Task>} - Returns all tasks
  */
-const getAll = async (boardId:string):Promise<ITask[]> => TASKS.filter(i => i.boardId === boardId);
+const getAll = async (boardId:string):Promise<Array<ITask>> => TASKS.filter(i => i.boardId === boardId);
 
 /**
  * Function create task
@@ -25,16 +25,16 @@ const getAll = async (boardId:string):Promise<ITask[]> => TASKS.filter(i => i.bo
  * @param {Task} body - data task
  * @returns {Array<Task>} - Returns create tasks
  */
-const createTask = async (boardId:string, {title, order, description, userId, columnId}:ITask):Promise<ITask> => {
+const createTask = async (boardId:string, data:ITask):Promise<ITask> => {
     const task = new Task({
-        title,
-        order,
-        description,
-        userId,
+        title: data.title,
+        order: data.order,
+        description: data.description,
+        userId: data.userId,
         boardId,
-        columnId
+        columnId: data.columnId
     });
-    TASKS.push(task)
+    await TASKS.push(task)
     return task
 };
 
@@ -46,7 +46,7 @@ const createTask = async (boardId:string, {title, order, description, userId, co
  * @param {string|number} taskId - task id
  * @returns {Task} Returns the searched task
  */
-const getTask = async (boardId:string, taskId:string):Promise<ITask> => TASKS.find(i => i.id===taskId && i.boardId === boardId);
+const getTask = async (boardId:string, taskId:string):Promise<ITask | undefined> => TASKS.find(i => i.id===taskId && i.boardId === boardId);
 
 /**
  * Function edit task by id
@@ -57,14 +57,9 @@ const getTask = async (boardId:string, taskId:string):Promise<ITask> => TASKS.fi
  * @param {Task} body - data task
  * @returns {Task} Returns the searched task
  */
-const setTask = async (boardId:string, taskId:string, {title, order, description, userId, columnId}:ITask):Promise<ITask> => {
+const setTask = async (boardId:string, taskId:string, data:ITask): Promise<ITask | undefined> => {
     const index = TASKS.findIndex(i => i.id===taskId && i.boardId === boardId);
-    TASKS[index].title = title;
-    TASKS[index].order = order;
-    TASKS[index].description = description;
-    TASKS[index].userId = userId;
-    TASKS[index].boardId = boardId;
-    TASKS[index].columnId = columnId;
+    TASKS[index] = data;
     return  TASKS[index]
 };
 
@@ -76,7 +71,7 @@ const setTask = async (boardId:string, taskId:string, {title, order, description
  * @param {string|number} taskId - task id
  * @returns {Task} Returns the delete task
  */
-const deleteTask = async (boardId:string, taskId:string):Promise<ITask> => {
+const deleteTask = async (boardId:string, taskId:string):Promise<ITask | undefined> => {
     const index = TASKS.findIndex(i => i.id===taskId && i.boardId === boardId)
     const task = TASKS[index]
     TASKS.splice(index,1)
@@ -88,12 +83,12 @@ const deleteTask = async (boardId:string, taskId:string):Promise<ITask> => {
  * @async
  * @function
  * @param {string|number} userId - user id
- * @returns {void}
+ * @returns {Promise<void>}
  */
-const userDelete = async (userId:string):Promise<void> => {
+const userDelete = async (userId:string) => {
     for (let i =0; i<TASKS.length; i+=1){
-        if (TASKS[i].userId === userId){
-            TASKS[i].userId = null;
+        if (TASKS[i]!.userId === userId){
+            TASKS[i]!.userId = null;
         }
     }
 }
@@ -103,14 +98,14 @@ const userDelete = async (userId:string):Promise<void> => {
  * @async
  * @function
  * @param {string|number} id - board id
- * @returns {void}
+ * @returns {Promise<void>}
  */
-const deleteBoardTask = async (id:string):Promise<void> => {
+const deleteBoardTask = async (id:string) => {
     for (let i = TASKS.length-1; i>=0; i-=1){
-        if (TASKS[i].boardId === id){
+        if (TASKS[i]!.boardId === id){
             TASKS.splice(i,1)
         }
     }
 }
 
-export = { getAll, createTask, getTask, setTask, deleteTask, userDelete, deleteBoardTask };
+export default { getAll, createTask, getTask, setTask, deleteTask, userDelete, deleteBoardTask };

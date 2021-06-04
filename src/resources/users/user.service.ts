@@ -1,6 +1,6 @@
-import * as usersRepo from './user.memory.repository';
+import usersRepo from './user.memory.repository';
 import { IUser } from '../../types/IUser';
-
+// const usersRepo = require('./user.memory.repository');
 /**
  * User service module
  * @module User service
@@ -9,17 +9,17 @@ import { IUser } from '../../types/IUser';
 /**
  * Function that get all users
  * @function
- * @returns {Array<User>} - Returns all users
+ * @returns {Promise<Array<IUser>>} - Returns all users
  */
-const getAll = ():Promise<IUser[]> => usersRepo.getAll();
+const getAll = async(): Promise<Array<IUser>> => usersRepo.getAll()
 
 /**
  * Create user
  * @function
- * @param {User} data - User data
+ * @param {User} body - User data
  * @returns {User} - Returns user
  */
-const createUser = (data:Request):Promise<IUser> => usersRepo.createUser(data);
+const createUser = async(body : IUser):Promise<IUser> => usersRepo.createUser(body);
 
 /**
  * Get user by id
@@ -27,7 +27,7 @@ const createUser = (data:Request):Promise<IUser> => usersRepo.createUser(data);
  * @param {string} data - User id
  * @returns {User} Returns user
  */
-const getUser = (data:string):Promise<IUser> => usersRepo.getUser(data);
+const getUser = (data:string): Promise<IUser | undefined> => usersRepo.getUser(data);
 
 /**
  * Edit user data in base
@@ -36,14 +36,14 @@ const getUser = (data:string):Promise<IUser> => usersRepo.getUser(data);
  * @param {User} data - User data new
  * @returns {User} - Returns  edited user
  */
-const setUser = (userId:string, data:Request):Promise<IUser> => usersRepo.setUser(userId, data);
+const setUser = (userId:string, data:IUser):Promise<IUser | undefined> => usersRepo.setUser(userId, data);
 
 /**
  * Delete user
  * @function
  * @param {string} data - User id
- * @returns {User} Returns delete user
+ * @returns {Promise<IUser>} Returns delete user
  */
-const deleteUser = (data:string):Promise<IUser> => usersRepo.deleteUser(data);
+const deleteUser = async (data:string): Promise<IUser | undefined> => usersRepo.deleteUser(data);
 
-export = { getAll, createUser, getUser, setUser, deleteUser };
+export default { getAll, createUser, getUser, setUser, deleteUser };
