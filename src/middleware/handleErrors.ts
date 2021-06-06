@@ -20,8 +20,9 @@ export const appHandleErr = (err: Error, _req: Request, res: Response, next: Nex
     next(err);
 }
 
-export const handleErr = (_err: Error, _req: Request, res: Response, _next: NextFunction): void => {
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR))
+export const handleErr = (_err: Error, _req: Request, res: Response, next: NextFunction): void => {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR));
+    next()
 }
 
 process.on('uncaughtException', (error: Error, origin: string) => {
@@ -29,7 +30,7 @@ process.on('uncaughtException', (error: Error, origin: string) => {
     logUncaughtExcept(error, origin);
   });
 
-process.on('unhandledRejection', (reason, _promise) => {
+process.on('unhandledRejection', (reason) => {
   console.log('Unhandled Rejection at:', reason);
   logUnhandledReject();
 });
