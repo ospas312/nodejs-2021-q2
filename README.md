@@ -6,7 +6,7 @@ build - docker-compose build
 run - docker-compose up
 stop - docker-compose down
 ```
-An alternative pull docker image from
+An alternative pull docker image from dockerhub
 
 Docker commands
 ```
