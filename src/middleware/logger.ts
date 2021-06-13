@@ -11,7 +11,7 @@ const logger = createLogger({
     ),
     transports: [
       new transports.File({
-        filename: 'error.log',
+        filename: './log/error.log',
         level: 'error',
         format: format.combine(
           format.uncolorize(),
@@ -19,7 +19,7 @@ const logger = createLogger({
         )
       }),
       new transports.File({
-        filename: 'info.log',
+        filename: './log/info.log',
         level: 'info',
         format: format.combine(
           format.uncolorize(),
@@ -85,5 +85,6 @@ export const logUnhandledReject = ():void => {
         'Time':new Date()
     };
     fs.appendFileSync('error.log', `${JSON.stringify(unhandledReject)}\n`);
+    process.exit(1)
 }
 

@@ -9,9 +9,9 @@ import { IUser } from "../../types/IUser";
 
 const USERS: IUser[] = [{
   id: "4cff2d17-a18f-48f7-8975-b1a91db78879",
-  name: "string",
-  login: "string",
-  password: "string",
+  name: "string1",
+  login: "string1",
+  password: "string1",
 },
 {
   id: "a6ec866c-eb51-48ac-ba59-0224e355e716",
