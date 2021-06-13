@@ -1,4 +1,4 @@
-import * as tasksRepo  from './task.memory.repository';
+import tasksRepo from './task.memory.repository';
 import { ITask } from '../../types/ITask';
 
 /**
@@ -12,7 +12,7 @@ import { ITask } from '../../types/ITask';
  * @param {string|number} id - Board id
  * @returns {Array<Task>} - Returns all tasks
  */
-const getAll = (id:string):Promise<ITask[]> => tasksRepo.getAll(id);
+const getAll = async (id:string): Promise<Array<ITask>> => tasksRepo.getAll(id);
 
 /**
  * Function create task
@@ -21,7 +21,7 @@ const getAll = (id:string):Promise<ITask[]> => tasksRepo.getAll(id);
  * @param {Task} body - data task
  * @returns {Task} - Returns create tasks
  */
-const createTask = (boardId: string, body:Request):Promise<ITask> => tasksRepo.createTask(boardId, body);
+const createTask = async(boardId: string, body:ITask): Promise<ITask> => tasksRepo.createTask(boardId, body);
 
 /**
  * Function get task by id
@@ -30,7 +30,7 @@ const createTask = (boardId: string, body:Request):Promise<ITask> => tasksRepo.c
  * @param {string|number} taskId - task id
  * @returns {Task} Returns the searched task
  */
-const getTask = (boardId: string, taskId:string):Promise<ITask[]> => tasksRepo.getTask(boardId, taskId);
+const getTask = async(boardId: string, taskId:string): Promise<ITask | undefined> => tasksRepo.getTask(boardId, taskId);
 
 /**
  * Function edit task by id
@@ -40,7 +40,7 @@ const getTask = (boardId: string, taskId:string):Promise<ITask[]> => tasksRepo.g
  * @param {Task} body - data task
  * @returns {Task} Returns the edited task
  */
-const setTask = (boardId:string, taskId:string, body:Request):Promise<ITask[]> => tasksRepo.setTask(boardId, taskId, body);
+const setTask = async(boardId:string, taskId:string, body:ITask): Promise<ITask | undefined> => tasksRepo.setTask(boardId, taskId, body);
 
 /**
  * Function delete task by id
@@ -49,6 +49,6 @@ const setTask = (boardId:string, taskId:string, body:Request):Promise<ITask[]> =
  * @param {string|number} taskId - task id
  * @returns {Task} Returns the delete task
  */
-const deleteTask = (boardId:string, taskId:string):Promise<ITask> => tasksRepo.deleteTask(boardId, taskId);
+const deleteTask = async(boardId:string, taskId:string): Promise<ITask | undefined> => tasksRepo.deleteTask(boardId, taskId);
 
-export = { getAll, createTask, getTask, setTask, deleteTask };
+export default { getAll, createTask, getTask, setTask, deleteTask };

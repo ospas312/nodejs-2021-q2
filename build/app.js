@@ -1,16 +1,20 @@
 "use strict";
-const express = require('express');
-const swaggerUI = require('swagger-ui-express');
-const path = require('path');
-const YAML = require('yamljs');
-const userRouter = require('./resources/users/user.router.ts');
-const boardRouter = require('./resources/boards/board.router.ts');
-const taskRouter = require('./resources/tasks/task.router.ts');
-const app = express();
-const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const path_1 = require("path");
+const yamljs_1 = __importDefault(require("yamljs"));
+const user_router_1 = __importDefault(require("./resources/users/user.router"));
+const board_router_1 = __importDefault(require("./resources/boards/board.router"));
+const task_router_1 = __importDefault(require("./resources/tasks/task.router"));
+const app = express_1.default();
+const swaggerDocument = yamljs_1.default.load(path_1.join(__dirname, '../doc/api.yaml'));
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use('/doc', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocument));
 app.use('/', (req, res, next) => {
     if (req.originalUrl === '/') {
         res.send('Service is running!');
@@ -18,7 +22,7 @@ app.use('/', (req, res, next) => {
     }
     next();
 });
-app.use('/users', userRouter);
-app.use('/boards', boardRouter);
-app.use('/boards/:boardId/tasks', taskRouter);
-module.exports = app;
+app.use('/users', user_router_1.default);
+app.use('/boards', board_router_1.default);
+app.use('/boards/:boardId/tasks', task_router_1.default);
+exports.default = app;

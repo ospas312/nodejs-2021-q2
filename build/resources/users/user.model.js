@@ -1,5 +1,7 @@
 "use strict";
-const { v4: uuidv4 } = require('uuid');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = void 0;
+const uuid_1 = require("uuid");
 /**
 * User model
 * @typedef {Object} User
@@ -9,7 +11,7 @@ const { v4: uuidv4 } = require('uuid');
 * @property {string} password - User password
 */
 class User {
-    constructor({ id = uuidv4(), name = 'USER', login = 'user', password = 'P@55w0rd' } = {}) {
+    constructor({ id = uuid_1.v4(), name = 'USER', login = 'user', password = 'P@55w0rd' }) {
         this.id = id;
         this.name = name;
         this.login = login;
@@ -20,4 +22,4 @@ class User {
         return { id, name, login };
     }
 }
-module.exports = User;
+exports.User = User;

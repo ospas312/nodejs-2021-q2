@@ -4,7 +4,7 @@ import { ITask } from '../../types/ITask';
 /**
 * Task model
 * @typedef {Object} Task
-* @property {string|number} id - Task id
+* @property {string} id - Task id
 * @property {string} title - Task title
 * @property {number} order - Task order
 * @property {string} description - Task description
@@ -14,6 +14,20 @@ import { ITask } from '../../types/ITask';
 */
 
 export class Task {
+  id: string;
+
+  title: string;
+
+  order: number;
+
+  description: string;
+
+  userId: string | null;
+
+  boardId: string;
+
+  columnId: string;
+
   constructor({
     id = uuidv4(),
     title = 'task',

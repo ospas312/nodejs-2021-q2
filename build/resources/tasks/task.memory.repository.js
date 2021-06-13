@@ -1,5 +1,5 @@
 "use strict";
-const Task = require("./task.model.ts");
+const task_model_1 = require("./task.model");
 /**
  * Task repository module
  * @module Task repository
@@ -21,14 +21,14 @@ const getAll = async (boardId) => TASKS.filter(i => i.boardId === boardId);
  * @param {Task} body - data task
  * @returns {Array<Task>} - Returns create tasks
  */
-const createTask = async (boardId, body) => {
-    const task = new Task({
-        title: body.title,
-        order: body.order,
-        description: body.description,
-        userId: body.userId,
+const createTask = async (boardId, { title, order, description, userId, columnId }) => {
+    const task = new task_model_1.Task({
+        title,
+        order,
+        description,
+        userId,
         boardId,
-        columnId: body.columnId
+        columnId
     });
     TASKS.push(task);
     return task;
@@ -51,14 +51,14 @@ const getTask = async (boardId, taskId) => TASKS.find(i => i.id === taskId && i.
  * @param {Task} body - data task
  * @returns {Task} Returns the searched task
  */
-const setTask = async (boardId, taskId, body) => {
+const setTask = async (boardId, taskId, { title, order, description, userId, columnId }) => {
     const index = TASKS.findIndex(i => i.id === taskId && i.boardId === boardId);
-    TASKS[index].title = body.title;
-    TASKS[index].order = body.order;
-    TASKS[index].description = body.description;
-    TASKS[index].userId = body.userId;
+    TASKS[index].title = title;
+    TASKS[index].order = order;
+    TASKS[index].description = description;
+    TASKS[index].userId = userId;
     TASKS[index].boardId = boardId;
-    TASKS[index].columnId = body.columnId;
+    TASKS[index].columnId = columnId;
     return TASKS[index];
 };
 /**
