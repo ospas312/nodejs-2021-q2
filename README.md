@@ -1,5 +1,19 @@
 # RS School REST service
 
+## Running application using Docker
+```
+build - docker-compose build
+run - docker-compose up
+stop - docker-compose down
+```
+An alternative pull docker image from
+
+Docker commands
+```
+docker pull ospas312/nodejs-2021_postgres
+docker pull ospas312/nodejs-2021_node
+docker run -p 4000:4000 express-app
+```
 ## Prerequisites
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).
