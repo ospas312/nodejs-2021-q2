@@ -23,12 +23,11 @@ export const connectDB = async () => {
     }
 }
 
-/* export const TryDbConnect = async (cb: () => void) => {
+export const TryDbConnect = async (cb: () => void) => {
     try {
         await connectDB();
         cb();
     } catch(err) {
-
         console.error('DB connection error', err);
     }
-} */
+}

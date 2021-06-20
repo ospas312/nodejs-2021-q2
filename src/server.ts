@@ -1,14 +1,9 @@
 import { PORT } from './common/config';
 import app from './app';
-import { connectDB } from './db';
+import { TryDbConnect } from './db';
 
-
-
-const start = async () => {
-    await connectDB();
+TryDbConnect (() => {
     app.listen(PORT, () =>
         console.log(`App is running on http://localhost:${PORT}`)
     );
-  };
-  
-  start();
+})
