@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import boardsService from './board.service';
 import { AppError } from "../../middleware/handleErrors";
-import { Board } from "./board.entity"; 
+import { Board } from "../../entitys/board.entity"; 
 
 const boardRouter = Router({ mergeParams: true });
 

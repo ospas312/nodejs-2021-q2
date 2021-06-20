@@ -1,5 +1,5 @@
 import { createConnection, getConnection } from 'typeorm';
-import { config } from './common/ormconfig';
+import config from './common/ormconfig';
 
 export const connectDB = async () => {
     let connection;
@@ -7,11 +7,11 @@ export const connectDB = async () => {
     try {
         connection = await getConnection()
     } catch(err) {
-        console.error('Connection error1', err);
+        //
     }
     try {
         if (connection){
-            if (!connection.isConnected) {
+            if (connection && !connection.isConnected) {
                await connection.connect()
             }
         }else {
@@ -23,7 +23,7 @@ export const connectDB = async () => {
     }
 }
 
-export const TryDbConnect = async (cb: () => void) => {
+/* export const TryDbConnect = async (cb: () => void) => {
     try {
         await connectDB();
         cb();
@@ -31,4 +31,4 @@ export const TryDbConnect = async (cb: () => void) => {
 
         console.error('DB connection error', err);
     }
-}
+} */

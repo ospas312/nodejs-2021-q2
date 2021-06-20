@@ -18,13 +18,13 @@ export class Task {
   id: string = uuidv4();
 
   @Column('varchar')
-  title = 'Task';
+  title: string = 'Task';
 
   @Column('integer')
-  order = 0;
+  order: number = 0;
 
   @Column('text')
-  description = '';
+  description: string = '';
 
   @Column('varchar', { length: 36, nullable: true })
   userId!: string | null;

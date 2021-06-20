@@ -5,6 +5,7 @@
     "allowJs": false,
     "outDir": "./build",
     "rootDir": "./src",
+    "baseUrl": "./src",
     "downlevelIteration": false,
     "strict": true,
     "noUnusedLocals": true,
@@ -24,6 +25,6 @@
     "node_modules/"
   ],
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts", "@types"
   ]
 }

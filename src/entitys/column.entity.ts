@@ -7,10 +7,10 @@ export class Columns {
   id: string = uuidv4();
 
   @Column('varchar')
-  title = 'Column';
+  title: string = 'Column';
 
   @Column('integer')
-  order = 0;
+  order: number = 0;
 
   static toResponse(column: Omit<Columns, 'id'>) {
     return column;

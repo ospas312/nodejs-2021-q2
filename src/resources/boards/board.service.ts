@@ -1,5 +1,5 @@
 import boardsRepo from './board.memory.repository';
-import { Board } from './board.entity'; 
+import { Board } from '../../entitys/board.entity'; 
 
 /**
  * Board service module

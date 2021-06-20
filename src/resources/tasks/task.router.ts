@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import tasksService from './task.service';
 import { AppError } from "../../middleware/handleErrors";
-import { Task } from "./task.entity";
+import { Task } from "../../entitys/task.entity";
 
 const taskRouter = Router({ mergeParams: true });
 

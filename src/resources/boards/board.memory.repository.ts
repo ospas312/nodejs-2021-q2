@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm";
-import { Board } from "./board.entity";
-import { Task } from "../tasks/task.entity";
+import { Board } from "../../entitys/board.entity";
+import { Task } from "../../entitys/task.entity";
 
 /**
  * Function that get all board
@@ -24,7 +24,7 @@ const getAll = async (): Promise<Board[]> => {
 const createBoard = async (data:Board): Promise<Board> => {
     const boardRepository = getRepository(Board);
     const board = await boardRepository.create(data);
-    return board;
+    return boardRepository.save(board);
 };
 
 /**
@@ -71,7 +71,7 @@ const deleteBoard = async (id:string): Promise<Board | null> => {
  
     const taskRepository = getRepository(Task);
     await taskRepository.update({ boardId: id }, { boardId: null });
-    
+
     return board
 };
 

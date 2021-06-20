@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { AppError } from "../../middleware/handleErrors";
-import { User } from './user.entity';
 import usersService from "./user.service";
+import { User } from "../../entitys/user.entity";
 
 const userRouter = Router({ mergeParams: true });
 

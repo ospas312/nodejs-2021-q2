@@ -1,5 +1,5 @@
 import usersRepo from './user.memory.repository';
-import { User } from './user.entity';
+import { User } from '../../entitys/user.entity';
 // const usersRepo = require('./user.memory.repository');
 /**
  * User service module

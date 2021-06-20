@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Task } from "./task.entity";
+import { Task } from "../../entitys/task.entity";
 
 /**
  * Function that get all task

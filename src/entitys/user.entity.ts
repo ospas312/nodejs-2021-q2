@@ -15,15 +15,14 @@ export class User {
   @PrimaryColumn('varchar')
   id: string = uuidv4();
 
-  @Column('varchar')
-  name = '';
+  @Column('varchar',)
+  name: string  = '';
 
   @Column('varchar')
   login!: string;
 
   @Column('varchar')
   password!: string;
-
 
   static toResponse(user: User) {
     const { id, name, login } = user;

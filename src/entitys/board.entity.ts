@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Columns } from '../columns/column.entity'; 
+import { Columns } from './column.entity'; 
 
 /**
 * Board model
@@ -24,7 +24,7 @@ export class Board {
   id: string = uuidv4();
 
   @Column('varchar')
-  title = 'Board';
+  title: string = 'Board';
 
   @Column('jsonb')
   columns: Columns[] = [];

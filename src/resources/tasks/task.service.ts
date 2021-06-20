@@ -1,5 +1,5 @@
 import tasksRepo from './task.memory.repository';
-import { Task } from './task.entity';
+import { Task } from '../../entitys/task.entity';
 
 /**
  * Task service module

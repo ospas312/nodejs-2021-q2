@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm'
-import { User } from "./user.entity";
-import { Task } from '../tasks/task.entity';
+import { User } from "../../entitys/user.entity";
+import { Task } from '../../entitys/task.entity';
 
 /**
  * Function that get all users
@@ -10,7 +10,8 @@ import { Task } from '../tasks/task.entity';
  */
 const getAll = async (): Promise<User[]> => {
   const userRepository = getRepository(User);
-  return userRepository.find({where:{}});
+  const result = await userRepository.find()
+  return result;
 };
 
 /**
