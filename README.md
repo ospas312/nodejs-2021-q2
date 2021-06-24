@@ -14,6 +14,16 @@ docker pull ospas312/nodejs-2021_postgres
 docker pull ospas312/nodejs-2021_node
 docker run -p 4000:4000 express-app
 ```
+## Migrations
+
+```
+start migration command:
+npm run typeorm migration:run
+```
+```
+revert migration command:
+npm run typeorm migration:revert
+```
 ## Prerequisites
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).
