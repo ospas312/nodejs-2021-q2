@@ -17,6 +17,7 @@ export default {
    database: POSTGRES_DB,
    synchronize: false,
    autoReconnect: true,
+   migrationsRun: true,
    reconnectTries: Number.MAX_VALUE,
    reconnectionInterval: 1000,
    entities: [path.join(__dirname, '../entitys/*.entity.ts')],
