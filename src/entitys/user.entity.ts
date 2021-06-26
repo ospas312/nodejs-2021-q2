@@ -28,4 +28,9 @@ export class User {
     const { id, name, login } = user;
     return { id, name, login };
   }
+
+  generateUserToken(){
+    const token = 'asd';
+    return token
+  }
 }
