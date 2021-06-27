@@ -28,7 +28,7 @@ app.use('/', (req: Request, res:Response, next:NextFunction) => {
 
 app.use(mainLog);
 
-app.use('/', authRouter);
+app.use('/login', authRouter);
 app.use(auth);
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);

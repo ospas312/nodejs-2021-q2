@@ -6,7 +6,7 @@ import { User } from "../../entitys/user.entity";
 
 const authRouter = Router();
 
-authRouter.route('/login').post(async (req: Request, res: Response) => {
+authRouter.route('/').post(async (req: Request, res: Response) => {
     const { login, password } = req.body;
     const user = await authService.findUserLogin(login, password);
     if (!user) {

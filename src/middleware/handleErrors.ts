@@ -25,12 +25,13 @@ export const handleErr = (_err: Error, _req: Request, res: Response, next: NextF
     next()
 }
 
-process.on('uncaughtException', (error: Error, origin: string) => {
-    console.log('Uncaught Exception at:', error);
+
+  process.on('uncaughtException', (error: Error, origin: string) => {
+    // console.log('Uncaught Exception at:', error);
     logUncaughtExcept(error, origin);
   });
 
-process.on('unhandledRejection', (reason) => {
-  console.log('Unhandled Rejection at:', reason);
-  logUnhandledReject();
+  process.on('unhandledRejection', (reason) => {
+    console.log('Unhandled Rejection at:', reason);
+    logUnhandledReject();
 });

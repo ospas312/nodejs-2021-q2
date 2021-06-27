@@ -10,7 +10,5 @@ define(User, () => {
   } as Omit<User, 'id'>;
 
   const userRepository = getRepository(User);
-  //const userCreate = userRepository.create(user);
-  //return userRepository.save(userCreate);
   return userRepository.create(user);
 });
