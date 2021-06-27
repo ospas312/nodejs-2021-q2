@@ -6,9 +6,6 @@ import { User } from "../../entitys/user.entity";
 
 const authRouter = Router();
 
-// authRouter.route('/login').post(AuthController.logIn);
-
-
 authRouter.route('/login').post(async (req: Request, res: Response) => {
     const { login, password } = req.body;
     const user = await authService.findUserLogin(login, password);
@@ -16,7 +13,6 @@ authRouter.route('/login').post(async (req: Request, res: Response) => {
       throw new AppError(
         'Login failed. Check authentication.',
         StatusCodes.FORBIDDEN,
-        'FORBIDDEN'
       );
     }
     const token = await user.generateUserToken();
