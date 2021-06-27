@@ -1,5 +1,5 @@
 import boardsRepo from './board.memory.repository';
-import { IBoard } from '../../types/IBoard';
+import { Board } from '../../entitys/board.entity'; 
 
 /**
  * Board service module
@@ -11,7 +11,7 @@ import { IBoard } from '../../types/IBoard';
  * @function
  * @returns {Array<Board>} - Returns all boards
  */
-const getAll = async(): Promise<Array<IBoard>> => boardsRepo.getAll();
+const getAll = async(): Promise<Board[]> => boardsRepo.getAll();
 
 /**
  * Function create board
@@ -19,7 +19,7 @@ const getAll = async(): Promise<Array<IBoard>> => boardsRepo.getAll();
  * @param {Board} body - data board
  * @returns {Board} - Returns create board
  */
-const createBoard = async(body:IBoard): Promise<IBoard> => boardsRepo.createBoard(body);
+const createBoard = async(body:Board): Promise<Board> => boardsRepo.createBoard(body);
 
 /**
  * Function get board by id
@@ -27,7 +27,7 @@ const createBoard = async(body:IBoard): Promise<IBoard> => boardsRepo.createBoar
  * @param {string|number} id - board id
  * @returns {Board} Returns the searched board
  */
-const getBoard = async(id:string): Promise<IBoard | undefined> => boardsRepo.getBoard(id);
+const getBoard = async(id:string): Promise<Board | null> => boardsRepo.getBoard(id);
 
 /**
  * Function edit board by id
@@ -36,7 +36,7 @@ const getBoard = async(id:string): Promise<IBoard | undefined> => boardsRepo.get
  * @param {Board} data - data board
  * @returns {Board} Returns the edited board
  */
-const setBoard = async(id:string, data:IBoard): Promise<IBoard | undefined> => boardsRepo.setBoard(id , data);
+const setBoard = async(id:string, data:Board): Promise<Board | null> => boardsRepo.setBoard(id , data);
 
 /**
  * Function delete board by id
@@ -44,7 +44,7 @@ const setBoard = async(id:string, data:IBoard): Promise<IBoard | undefined> => b
  * @param {string|number} id - board id
  * @returns {Board} Returns the delete board
  */
-const deleteBoard = async(id:string): Promise<IBoard | undefined> => boardsRepo.deleteBoard(id);
+const deleteBoard = async(id:string): Promise<Board | null> => boardsRepo.deleteBoard(id);
 
 
 export default { getAll, createBoard, getBoard, setBoard, deleteBoard };

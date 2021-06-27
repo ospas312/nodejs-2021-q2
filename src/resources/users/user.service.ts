@@ -1,5 +1,5 @@
 import usersRepo from './user.memory.repository';
-import { IUser } from '../../types/IUser';
+import { User } from '../../entitys/user.entity';
 // const usersRepo = require('./user.memory.repository');
 /**
  * User service module
@@ -11,7 +11,7 @@ import { IUser } from '../../types/IUser';
  * @function
  * @returns {Promise<Array<IUser>>} - Returns all users
  */
-const getAll = async(): Promise<Array<IUser>> => usersRepo.getAll()
+const getAll = async(): Promise<Array<User>> => usersRepo.getAll()
 
 /**
  * Create user
@@ -19,7 +19,7 @@ const getAll = async(): Promise<Array<IUser>> => usersRepo.getAll()
  * @param {User} body - User data
  * @returns {User} - Returns user
  */
-const createUser = async(body : IUser):Promise<IUser> => usersRepo.createUser(body);
+const createUser = async(body : User):Promise<User> => usersRepo.createUser(body);
 
 /**
  * Get user by id
@@ -27,7 +27,7 @@ const createUser = async(body : IUser):Promise<IUser> => usersRepo.createUser(bo
  * @param {string} data - User id
  * @returns {User} Returns user
  */
-const getUser = (data:string): Promise<IUser | undefined> => usersRepo.getUser(data);
+const getUser = (data:string): Promise<User | null> => usersRepo.getUser(data);
 
 /**
  * Edit user data in base
@@ -36,7 +36,7 @@ const getUser = (data:string): Promise<IUser | undefined> => usersRepo.getUser(d
  * @param {User} data - User data new
  * @returns {User} - Returns  edited user
  */
-const setUser = (userId:string, data:IUser):Promise<IUser | undefined> => usersRepo.setUser(userId, data);
+const setUser = (userId:string, data:User):Promise<User | null> => usersRepo.setUser(userId, data);
 
 /**
  * Delete user
@@ -44,6 +44,6 @@ const setUser = (userId:string, data:IUser):Promise<IUser | undefined> => usersR
  * @param {string} data - User id
  * @returns {Promise<IUser>} Returns delete user
  */
-const deleteUser = async (data:string): Promise<IUser | undefined> => usersRepo.deleteUser(data);
+const deleteUser = async (data:string): Promise<User | null> => usersRepo.deleteUser(data);
 
 export default { getAll, createUser, getUser, setUser, deleteUser };

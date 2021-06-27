@@ -1,12 +1,5 @@
-import { Task } from "./task.model";
-import { ITask } from "../../types/ITask";
-
-/**
- * Task repository module
- * @module Task repository
- */
-
-const TASKS: Array<ITask> = [];
+import { getRepository } from "typeorm";
+import { Task } from "../../entitys/task.entity";
 
 /**
  * Function that get all task
@@ -15,7 +8,10 @@ const TASKS: Array<ITask> = [];
  * @param {string|number} id - Board id
  * @returns {Array<Task>} - Returns all tasks
  */
-const getAll = async (boardId:string):Promise<Array<ITask>> => TASKS.filter(i => i.boardId === boardId);
+const getAll = async (boardId:string):Promise<Task[]> => {
+    const taskRepository = getRepository(Task);
+    return taskRepository.find({boardId});
+} 
 
 /**
  * Function create task
@@ -25,17 +21,11 @@ const getAll = async (boardId:string):Promise<Array<ITask>> => TASKS.filter(i =>
  * @param {Task} body - data task
  * @returns {Array<Task>} - Returns create tasks
  */
-const createTask = async (boardId:string, data:ITask):Promise<ITask> => {
-    const task = new Task({
-        title: data.title,
-        order: data.order,
-        description: data.description,
-        userId: data.userId,
-        boardId,
-        columnId: data.columnId
-    });
-    await TASKS.push(task)
-    return task
+const createTask = async (boardId:string, data:Task):Promise<Task> => {
+    const taskRepository = getRepository(Task);
+    const taskData = { ...data, boardId };
+    const task = await taskRepository.create(taskData);
+    return taskRepository.save(task);
 };
 
 /**
@@ -46,7 +36,12 @@ const createTask = async (boardId:string, data:ITask):Promise<ITask> => {
  * @param {string|number} taskId - task id
  * @returns {Task} Returns the searched task
  */
-const getTask = async (boardId:string, taskId:string):Promise<ITask | undefined> => TASKS.find(i => i.id===taskId && i.boardId === boardId);
+const getTask = async (boardId:string, taskId:string):Promise<Task | null> => {
+    const taskRepository = getRepository(Task);
+    const task = await taskRepository.findOne({boardId, id: taskId});
+    if (!task) return null
+    return task
+}
 
 /**
  * Function edit task by id
@@ -57,10 +52,12 @@ const getTask = async (boardId:string, taskId:string):Promise<ITask | undefined>
  * @param {Task} body - data task
  * @returns {Task} Returns the searched task
  */
-const setTask = async (boardId:string, taskId:string, data:ITask): Promise<ITask | undefined> => {
-    const index = TASKS.findIndex(i => i.id===taskId && i.boardId === boardId);
-    TASKS[index] = data;
-    return  TASKS[index]
+const setTask = async (boardId:string, taskId:string, data:Task): Promise<Task | null> => {
+    const taskRepository = getRepository(Task);
+    const task = await taskRepository.findOne({boardId, id: taskId});
+    if (!task) return null
+    const updateTask = await taskRepository.update({boardId, id: taskId}, data);
+    return updateTask.raw;
 };
 
 /**
@@ -71,41 +68,12 @@ const setTask = async (boardId:string, taskId:string, data:ITask): Promise<ITask
  * @param {string|number} taskId - task id
  * @returns {Task} Returns the delete task
  */
-const deleteTask = async (boardId:string, taskId:string):Promise<ITask | undefined> => {
-    const index = TASKS.findIndex(i => i.id===taskId && i.boardId === boardId)
-    const task = TASKS[index]
-    TASKS.splice(index,1)
+const deleteTask = async (boardId:string, taskId:string):Promise<Task | null> => {
+    const taskRepository = getRepository(Task);
+    const task = await taskRepository.findOne({boardId, id: taskId});
+    if (!task) return null
+    await taskRepository.delete({boardId, id: taskId});
     return task
 };
 
-/**
- * Function delete user id 
- * @async
- * @function
- * @param {string|number} userId - user id
- * @returns {Promise<void>}
- */
-const userDelete = async (userId:string) => {
-    for (let i =0; i<TASKS.length; i+=1){
-        if (TASKS[i]!.userId === userId){
-            TASKS[i]!.userId = null;
-        }
-    }
-}
-
-/**
- * Function delete tasks board
- * @async
- * @function
- * @param {string|number} id - board id
- * @returns {Promise<void>}
- */
-const deleteBoardTask = async (id:string) => {
-    for (let i = TASKS.length-1; i>=0; i-=1){
-        if (TASKS[i]!.boardId === id){
-            TASKS.splice(i,1)
-        }
-    }
-}
-
-export default { getAll, createTask, getTask, setTask, deleteTask, userDelete, deleteBoardTask };
+export default { getAll, createTask, getTask, setTask, deleteTask };

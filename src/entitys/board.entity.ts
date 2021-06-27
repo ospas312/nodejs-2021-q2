@@ -1,6 +1,7 @@
+import { Entity, PrimaryColumn, Column } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
-import { IBoard } from '../../types/IBoard';
-import { IColumn } from '../../types/IColumn';
+
+import { Columns } from './column.entity'; 
 
 /**
 * Board model
@@ -12,26 +13,23 @@ import { IColumn } from '../../types/IColumn';
 
 /**
 * Column model
-* @typedef {Object} Column
+* @typedef {Object} Columns
 * @property {string|number} id - Column id
 * @property {string} title - Column title
 * @property {number} order - Column order (optional)
 */
-
+@Entity({ name: 'boards' })
 export class Board {
-  id:string;
+  @PrimaryColumn()
+  id: string = uuidv4();
 
-  title:string;
+  @Column('varchar')
+  title: string = 'Board';
 
-  columns: Array<IColumn>;
+  @Column('jsonb')
+  columns: Columns[] = [];
 
-  constructor({
-    id = uuidv4(),
-    title = 'board',
-    columns = [],
-  }: IBoard) {
-    this.id = id;
-    this.title = title;
-    this.columns = columns;
+  static toResponse(board: Omit<Board, 'id'>) {
+    return board;
   }
 }

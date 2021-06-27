@@ -29,10 +29,11 @@ app.use(mainLog);
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', taskRouter);
-app.use('/exit', () => process.exit(10)) // eslint-disable-line
+// app.use('/exit', () => process.exit(10)) // eslint-disable-line
 
 app.use(errorsLog);
 app.use(appHandleErr);
 app.use(handleErr);
-console.log('asd')
+// console.log('asd')
+
 export default app;

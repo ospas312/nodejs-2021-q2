@@ -1,24 +1,6 @@
-import { User } from "./user.model";
-import tasksRepo from '../tasks/task.memory.repository';
-import { IUser } from "../../types/IUser";
-
-/**
- * User repository 
- * @module User repository
- */
-
-const USERS: IUser[] = [{
-  id: "4cff2d17-a18f-48f7-8975-b1a91db78879",
-  name: "string1",
-  login: "string1",
-  password: "string1",
-},
-{
-  id: "a6ec866c-eb51-48ac-ba59-0224e355e716",
-  name: "user",
-  login: "user",
-  password: "user",
-}]
+import { getRepository } from 'typeorm'
+import { User } from "../../entitys/user.entity";
+import { Task } from '../../entitys/task.entity';
 
 /**
  * Function that get all users
@@ -26,7 +8,11 @@ const USERS: IUser[] = [{
  * @function
  * @returns {Array<User>} - Returns all users
  */
-const getAll = async (): Promise<Array<IUser>> => USERS;
+const getAll = async (): Promise<User[]> => {
+  const userRepository = getRepository(User);
+  const result = await userRepository.find()
+  return result;
+};
 
 /**
  * Function create user
@@ -35,10 +21,10 @@ const getAll = async (): Promise<Array<IUser>> => USERS;
  * @param {User} data - User data
  * @returns {User} - Returns create user
  */
-const createUser = async ( data : IUser) => {
-  const user = new User(data)
-  USERS.push(user)
-  return user;
+const createUser = async ( data : User): Promise<User> => {
+  const userRepository = getRepository(User);
+  const user = userRepository.create(data);
+  return userRepository.save(user);
 };
 /**
  * Function get user by id
@@ -47,8 +33,12 @@ const createUser = async ( data : IUser) => {
  * @param {string} userId - User id
  * @returns {User} - Returns create user
  */
-const getUser = async (userId:string): Promise<IUser | undefined> => USERS.find(i => i.id === userId);
-
+const getUser = async (userId:string): Promise<User | null> => {
+  const userRepository = getRepository(User);
+  const user = await userRepository.findOne(userId);
+  if (!user) return null;
+  return user;
+}
 /**
  * Function edit user by id
  * @async
@@ -57,18 +47,14 @@ const getUser = async (userId:string): Promise<IUser | undefined> => USERS.find(
  * @param {User} data - User data new
  * @returns {User} - Returns create user
  */
-const setUser = async (userId:string, data: IUser): Promise<IUser | undefined>  => {
-  const index = USERS.findIndex(i => i.id===userId)
-  USERS[index] = data;
-  return  USERS[index]
-  /* USERS.forEach((i, index) =>{
-    if (i.id===userId){
-      USERS[index] = data;
-      return USERS[index]
-    }
-  }) */
-};
+const setUser = async (userId:string, data: User): Promise<User | null>  => {
+  const userRepository = getRepository(User);
+  const user = await userRepository.findOne(userId);
+  if (!user) return null;
+  const updateUser = await userRepository.update(userId, data)
+  return updateUser.raw;
 
+};
 /**
  * Delete user
  * @async
@@ -76,12 +62,16 @@ const setUser = async (userId:string, data: IUser): Promise<IUser | undefined>  
  * @param {string} userId - User id
  * @returns {User} Returns delete user
  */
-const deleteUser = async (userId:string): Promise<IUser | undefined> => {
-  const index = USERS.findIndex(i => i.id===userId)
-  const user = USERS[index]
-  USERS.splice(index,1)
-  await tasksRepo.userDelete(userId)
-  return user
+const deleteUser = async (userId:string): Promise<User | null> => {
+  const userRepository = getRepository(User);
+  const user = await userRepository.findOne(userId);
+  if (!user) return null;
+  await userRepository.delete(userId)
+
+  const taskRepository = getRepository(Task);
+  await taskRepository.update({ userId }, { userId: null });
+
+  return user;
 };
 
 export default { getAll, createUser, getUser, setUser, deleteUser };
