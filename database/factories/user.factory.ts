@@ -1,6 +1,6 @@
 import { define } from 'typeorm-seeding';
 import { getRepository } from 'typeorm';
-import { User } from '../../src/entitys/user.entity';
+import { User } from '../../src/entities/user.entity';
 
 define(User, () => {
   const user = {

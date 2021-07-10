@@ -34,7 +34,7 @@ export class CreateBoardsTable1624210627025 implements MigrationInterface {
           },
         ],
       }),
-      true
+      true,
     );
   }
 

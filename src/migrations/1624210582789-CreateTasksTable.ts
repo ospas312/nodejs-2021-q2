@@ -57,7 +57,7 @@ export class CreateTasksTable1624210582789 implements MigrationInterface {
           },
         ],
       }),
-      true
+      true,
     );
   }
 
