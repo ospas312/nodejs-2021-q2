@@ -17,6 +17,7 @@ export default {
    database: POSTGRES_DB,
    synchronize: false,
    autoReconnect: true,
+   migrationsRun: true,
    reconnectTries: Number.MAX_VALUE,
    reconnectionInterval: 1000,
    entities: [path.join(__dirname, '../entitys/*.entity.ts')],
@@ -24,4 +25,7 @@ export default {
    migrationsTableName: 'migrations',
    migrations: [path.join(__dirname, '../migrations/*.ts')],
    cli: { migrationsDir: 'src/migrations' },
+
+   seeds: [path.join(__dirname, '../../database/seeds/*.ts')],
+   factories: [path.join(__dirname, '../../database/factories/*.ts')],
 } as ConnectionOptions;

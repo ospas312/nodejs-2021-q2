@@ -85,6 +85,5 @@ export const logUnhandledReject = ():void => {
         'Time':new Date()
     };
     fs.appendFileSync('error.log', `${JSON.stringify(unhandledReject)}\n`);
-    process.exit(1)
 }
 

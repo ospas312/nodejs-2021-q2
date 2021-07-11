@@ -1,5 +1,10 @@
-import { v4 as uuidv4 } from 'uuid';
-import {Entity, Column, PrimaryColumn} from 'typeorm'
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import {Entity, Column, PrimaryGeneratedColumn, BeforeInsert} from 'typeorm';
+
+import { config } from '../common/config';
+
+const { JWT_SECRET_KEY } = config;
 
 /**
 * User model
@@ -12,8 +17,8 @@ import {Entity, Column, PrimaryColumn} from 'typeorm'
 
 @Entity({ name: 'users' })
 export class User {
-  @PrimaryColumn('varchar')
-  id: string = uuidv4();
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   @Column('varchar',)
   name: string  = '';
@@ -24,8 +29,20 @@ export class User {
   @Column('varchar')
   password!: string;
 
+  @BeforeInsert()
+  generatePasswordHash() {
+    this.password = bcrypt.hashSync(this.password, 10);
+  }
+
   static toResponse(user: User) {
     const { id, name, login } = user;
     return { id, name, login };
+  }
+
+  generateUserToken(){
+    const token = jwt.sign({ userId: this.id, login: this.login }, JWT_SECRET_KEY, {
+      expiresIn: '1h',
+    });
+    return token
   }
 }
