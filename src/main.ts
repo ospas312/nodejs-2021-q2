@@ -27,7 +27,7 @@ async function bootstrap(useFasify: string | undefined) {
     );
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('doc', app, document);
-    console.log('USE_FASTIFY')
+    console.log('USE_FASTIFY');
     await app.listen(Number(PORT), '0.0.0.0');
   } else {
     const app = await NestFactory.create(AppModule);

@@ -12,8 +12,8 @@ import {
   UseGuards,
   UseFilters,
 } from '@nestjs/common';
-import {  MyExceptionFilter } from '../exception/exception.filter';
 import { AuthGuard } from '@nestjs/passport';
+import { MyExceptionFilter } from '../exception/exception.filter';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';

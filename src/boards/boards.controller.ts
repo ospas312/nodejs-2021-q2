@@ -12,8 +12,8 @@ import {
   UseGuards,
   UseFilters,
 } from '@nestjs/common';
-import {  MyExceptionFilter } from '../exception/exception.filter';
 import { AuthGuard } from '@nestjs/passport';
+import { MyExceptionFilter } from '../exception/exception.filter';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';

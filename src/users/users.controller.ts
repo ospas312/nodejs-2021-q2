@@ -10,10 +10,10 @@ import {
   HttpException,
   HttpStatus,
   UseGuards,
-  UseFilters
+  UseFilters,
 } from '@nestjs/common';
-import {  MyExceptionFilter } from '../exception/exception.filter'
 import { AuthGuard } from '@nestjs/passport';
+import { MyExceptionFilter } from '../exception/exception.filter';
 import { User } from '../entities/user.entity';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
