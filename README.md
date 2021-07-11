@@ -36,7 +36,7 @@
 
 1. **npm i**
 2. **docker-compose build**
-3  **docker-compose up --build**
+3.  **docker-compose up --build**
 4. new terminal **npm run test:auth**
 
 ##  Fastify on
@@ -59,11 +59,11 @@
 | Requests completed:   | 20700            |                       |                                                                      |   
 | Mean response/sec:    | 106.98           |                       |                                                                      |   
 | Scenario counts:      |   4140           |                       |                                                                      |   
-| Response time (msec): |  min: 1          |median: 6     |   max: 185         |
+| Response time (msec): |  min: 1          |median: 6     |   max: 185 |
 | 
-| p95:                  |   12          |                           ||                                                                      |
-| p99:                  | 28           |                       |                                                                      |
-| Status Codes          |200:16560, 201:4140|                       |                                                                      |
+| p95:                  |   12             |                           ||                                                                      |
+| p99:                  | 28               |                       |                                                                      |
+| Status Codes          |200:16560,201:4140|                       |                                                                      |
 
 
 
@@ -75,11 +75,11 @@
 | Requests completed:   | 20650            |                       |                                                                      |   
 | Mean response/sec:    | 106.91           |                       |                                                                      |   
 | Scenario counts:      |  4130            |                       |                                                                      |   
-| Response time (msec): |  min: 1          |median: 5     |   max: 230         |
+| Response time (msec): |  min: 1          |median: 5     |   max: 230 |
 | 
-| p95:                  |   11          |                           ||                                                                      |
-| p99:                  | 34           |                       |                                                                      |
-| Status Codes          |200:16520, 201:4130|                       |                                                                      |
+| p95:                  |   11             |                           ||                                                                      |
+| p99:                  | 34               |                       |                                                                      |
+| Status Codes          |200:16520,201:4130|                       |                                                                      |
 |Scenario counts:       |  4140            |                           |
 
 
