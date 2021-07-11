@@ -10,7 +10,9 @@ import {
   HttpException,
   HttpStatus,
   UseGuards,
+  UseFilters,
 } from '@nestjs/common';
+import {  MyExceptionFilter } from '../exception/exception.filter';
 import { AuthGuard } from '@nestjs/passport';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -18,6 +20,7 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Controller('boards/:boardId/tasks')
 @UseGuards(AuthGuard('jwt'))
+@UseFilters(new MyExceptionFilter())
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 

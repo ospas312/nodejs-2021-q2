@@ -8,6 +8,8 @@ import { BoardsModule } from './boards/boards.module';
 import { TasksModule } from './tasks/tasks.module';
 import ormConfig from './ormconfig';
 import { AuthModule } from './auth/auth.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { LoggingInterceptor } from 'interceptor/logging.interceptor';
 
 @Module({
   imports: [
@@ -21,6 +23,12 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    },
+  ],
 })
 export class AppModule {}

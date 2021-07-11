@@ -1,15 +1,15 @@
 export class CreateTaskDto {
-  id: string;
+  id!: string;
 
-  title: string;
+  title!: string;
 
-  order: number;
+  order!: number;
 
-  description: string;
+  description!: string;
 
-  userId: string;
+  userId!: string;
 
-  boardId: string;
+  boardId!: string;
 
-  columnId: string;
+  columnId!: string;
 }

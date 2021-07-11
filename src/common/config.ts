@@ -15,7 +15,7 @@ const { POSTGRES_PASSWORD } = process.env;
 const { POSTGRES_USER } = process.env;
 const { POSTGRES_DB } = process.env;
 const { USE_FASTIFY } = process.env;
-console.log(process.env.JWT_SECRET_KEY);
+
 const EXCLUDE_ROUTES = ['/doc', '/', '/login'];
 
 export {

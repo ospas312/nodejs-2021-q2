@@ -27,15 +27,15 @@ async function bootstrap(useFasify: string | undefined) {
     );
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('doc', app, document);
-
-    await app.listen(PORT);
+    console.log('USE_FASTIFY')
+    await app.listen(Number(PORT), '0.0.0.0');
   } else {
     const app = await NestFactory.create(AppModule);
 
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('doc', app, document);
 
-    await app.listen(PORT);
+    await app.listen(Number(PORT));
   }
   const userRepository = getRepository(User);
   const user = await userRepository.findOne({ login: `admin` });

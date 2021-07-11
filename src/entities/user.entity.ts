@@ -6,7 +6,7 @@ export class User {
   id!: string;
 
   @Column('varchar', { default: '' })
-  name: string;
+  name!: string;
 
   @Column('varchar', { unique: true })
   login!: string;

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
-import { Task } from 'src/entities/task.entity';
+import { Task } from '../entities/task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
@@ -40,7 +40,7 @@ export class TasksService {
     return updateTask;
   }
 
-  async remove(id: string, boardId: string): Promise<DeleteResult> {
+  async remove(id: string, boardId: string): Promise<DeleteResult | null> {
     const task = await this.taskRepository.findOne({ boardId, id });
     if (!task) return null;
     return this.taskRepository.delete({ boardId, id });

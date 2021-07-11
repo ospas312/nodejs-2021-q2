@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import { join } from 'path';
 
 dotenv.config({
-  path: join(__dirname, '../../.env'),
+  path: join(__dirname, '../.env'),
 });
 
 const {
@@ -14,8 +14,6 @@ const {
   POSTGRES_HOST,
 } = process.env;
 
-console.log('orm_user', process.env.POSTGRES_USER);
-console.log('orm_user', POSTGRES_USER);
 export default {
   type: 'postgres',
   host: POSTGRES_HOST,

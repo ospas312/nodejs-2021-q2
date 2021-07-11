@@ -12,7 +12,7 @@ services:
         networks: 
             - my_network
         volumes:
-            - ./log:/usr/app/log
+            - ./src/log:/usr/app/src/log
             - ./src:/usr/app/src
     postgres:
         build: ./database/

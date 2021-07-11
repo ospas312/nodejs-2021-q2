@@ -7,7 +7,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { User } from 'src/entities/user.entity';
+import { User } from '../entities/user.entity';
 import { AuthService } from './auth.service';
 import { Token } from './auth.token';
 import { UsersService } from '../users/users.service';
