@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { Repository, Connection } from 'typeorm';
+import { Repository, Connection, DeleteResult } from 'typeorm';
 import { User } from 'src/entities/user.entity';
-import { DeleteResult } from 'typeorm';
+
 import { Task } from 'src/entities/task.entity';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
+import { IUser } from './user.interface';
 
 @Injectable()
 export class UsersService {
@@ -20,6 +21,7 @@ export class UsersService {
     const result = users;
     return result;
   }
+
   async createUser(body: CreateUserDto): Promise<User> {
     const user = await this.userRepository.create(body);
     const newUser = await this.userRepository.save(user);
@@ -53,5 +55,17 @@ export class UsersService {
       .execute();
 
     return this.userRepository.delete(id);
+  }
+
+  async getByLogin(login: string): Promise<User | null | IUser> {
+    const user = await this.userRepository.findOne({ login });
+    if (!user) return null;
+    return user;
+  }
+
+  async getByLoginTest(login: string): Promise<IUser | null> {
+    const user = await this.userRepository.findOne({ login });
+    if (!user) return null;
+    return user;
   }
 }

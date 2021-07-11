@@ -3,13 +3,13 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity({ name: 'columns' })
 export class Columns {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
 
   @Column('varchar', { default: 'Column' })
-  title: string;
+  title!: string;
 
   @Column('integer')
-  order: number;
+  order!: number;
 
   static toResponse(column: Omit<Columns, 'id'>) {
     return column;

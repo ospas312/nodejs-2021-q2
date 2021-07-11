@@ -9,12 +9,15 @@ import {
   HttpCode,
   HttpException,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Controller('boards/:boardId/tasks')
+@UseGuards(AuthGuard('jwt'))
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
@@ -31,7 +34,7 @@ export class TasksController {
   @Get()
   @HttpCode(200)
   async findAll(@Param('boardId') boardId: string) {
-    return await this.tasksService.findAll(boardId);
+    return this.tasksService.findAll(boardId);
   }
 
   @Get(':id')
@@ -51,7 +54,7 @@ export class TasksController {
     @Param('boardId') boardId: string,
     @Body() updateTaskDto: UpdateTaskDto,
   ) {
-    return await this.tasksService.update(id, boardId, updateTaskDto);
+    return this.tasksService.update(id, boardId, updateTaskDto);
   }
 
   @Delete(':id')

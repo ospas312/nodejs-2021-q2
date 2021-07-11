@@ -7,7 +7,7 @@ export class Board {
   id!: string;
 
   @Column('varchar', { default: 'Board' })
-  title: string;
+  title!: string;
 
   @Column('jsonb')
   columns: Columns[] = [];

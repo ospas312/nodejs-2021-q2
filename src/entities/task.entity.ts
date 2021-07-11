@@ -3,16 +3,16 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity({ name: 'tasks' })
 export class Task {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
 
   @Column('varchar', { default: 'Task' })
-  title: string;
+  title!: string;
 
   @Column('integer')
-  order: number;
+  order!: number;
 
   @Column('text', { default: '' })
-  description: string;
+  description!: string;
 
   @Column('varchar', { length: 36, nullable: true })
   userId!: string | null;

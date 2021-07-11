@@ -1,7 +1,9 @@
-import { Columns } from 'src/entities/column.entity';
+import { Columns } from '../../entities/column.entity';
 
 export class CreateBoardDto {
-  id: string;
-  title: string;
-  columns: Columns[];
+  id!: string;
+
+  title!: string;
+
+  columns!: Columns[];
 }
