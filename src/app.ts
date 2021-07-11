@@ -3,8 +3,6 @@ import swaggerUI from 'swagger-ui-express'
 import { join } from 'path';
 import YAML from 'yamljs';
 
-import auth from './middleware/auth';
-import authRouter from './resources/auth/auth.router';
 import userRouter from './resources/users/user.router';
 import boardRouter from './resources/boards/board.router';
 import taskRouter from './resources/tasks/task.router';
@@ -28,8 +26,6 @@ app.use('/', (req: Request, res:Response, next:NextFunction) => {
 
 app.use(mainLog);
 
-app.use('/login', authRouter);
-app.use(auth);
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', taskRouter);
